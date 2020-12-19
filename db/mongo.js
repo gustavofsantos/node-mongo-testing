@@ -10,4 +10,8 @@ async function connect() {
   return client.db("demo-testing");
 }
 
-module.exports = { connect };
+async function disconnect() {
+  await client.close();
+}
+
+module.exports = { connect, disconnect };
