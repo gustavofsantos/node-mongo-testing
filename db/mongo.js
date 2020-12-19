@@ -5,9 +5,15 @@ const client = new MongoClient("mongodb://admin:admin@localhost:27017", {
   useUnifiedTopology: true,
 });
 
+let connected = false;
+
 async function connect() {
+  if (connected) return client.db("demo-testing");
+
   await client.connect();
-  return client.db("demo-testing");
+  connected = true;
+
+  return connect();
 }
 
 async function disconnect() {
