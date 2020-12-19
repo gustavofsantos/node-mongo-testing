@@ -1,6 +1,11 @@
+const { connect } = require("../../db/mongo");
+
 async function usersRouter(fastify) {
+  const db = await connect();
+
   fastify.get("/users", (req, reply) => {
-    reply.send({ hello: "world" });
+    const users = db.collection("users").find({}).toArray();
+    reply.send(users);
   });
 }
 
