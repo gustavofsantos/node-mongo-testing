@@ -4,10 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node app/server.js",
+    "start": "node -r dotenv/config app/server.js dotenv_config_path=./.env.local",
     "test": "jest",
     "test:watch": "jest --watch",
-    "db:seed": "node scripts/db/seed.js"
+    "db:seed": "node -r dotenv/config scripts/db/seed.js dotenv_config_path=./.env.local"
   },
   "keywords": [],
   "author": "",

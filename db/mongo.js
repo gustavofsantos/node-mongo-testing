@@ -1,6 +1,6 @@
 const { MongoClient } = require("mongodb");
 
-const client = new MongoClient("mongodb://admin:admin@localhost:27017", {
+const client = new MongoClient(process.env.MONGO_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
@@ -8,7 +8,7 @@ const client = new MongoClient("mongodb://admin:admin@localhost:27017", {
 let connected = false;
 
 async function connect() {
-  if (connected) return client.db("demo-testing");
+  if (connected) return client.db(process.env.MONGO_DATABASE);
 
   await client.connect();
   connected = true;
