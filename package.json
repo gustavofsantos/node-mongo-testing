@@ -5,6 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "node app/server.js",
+    "test": "jest",
+    "test:watch": "jest --watch",
     "db:seed": "node scripts/db/seed.js"
   },
   "keywords": [],
