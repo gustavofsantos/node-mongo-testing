@@ -1,0 +1,32 @@
+name: Tests
+
+on:
+  pull_request
+
+env:
+  NODE_ENV: test
+    
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    services:
+      mongo:
+        image: mongo:4.4
+        ports:
+          - 27017:27017
+    
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '14.x'
+
+      - name: Install dependencies
+        run: npm i
+
+      - name: Run tests
+        run: npm run test
+        env:
+          MONGO_URI: mongodb://127.0.0.1:27017
+          MONGO_DATABASE: demo-testing
